@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------- import libraries
+# import libraries
 try:
     tShoot = 1
     import os
@@ -16,14 +16,14 @@ except:
     exit = input('Hit Enter to exit.')
     exit()
 
-#------------------------------------------------------------------------------- checking connection
+# checking connection
 try:
     test = requests.get('http://www.google.com')
 except:
     print('Error! > you should connected to internet.')
     exit = input('Make sure you are connected. Hit Enter to exit.')
     exit()
-#------------------------------------------------------------------------------- os detection !
+# os detection !
 if os.system('clear') == 0:
     clearIt = 'clear'
 else:
@@ -31,7 +31,7 @@ else:
 
 def run():
     os.system(clearIt)
-    #--------------------------------------------------------------------------- authors name
+    # authors name
 
     ffl = input('input your First name first letter(a-z)\n>> ').upper()          # name first letter
     lfl = input('input your Last name first letter(a-z)\n>> ').upper()           # lastName first letter
@@ -54,7 +54,7 @@ def run():
             print('-',name.string)
             counter+=1
             writer_list.append(name.string)
-    #--------------------------------------------------------------------------- authors book
+    # authors book
     try :
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
         writer = str(writer_list[writer_number]).replace(' ','+')
