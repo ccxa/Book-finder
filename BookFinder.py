@@ -1,18 +1,10 @@
 # import libraries
 try:
-    tShoot = 1
     import os
-    tShoot += 1
     import requests
-    tShoot += 1
     import bs4
-except:
-    if tShoot == 1 :
-        print('Error! > you need to install [os] library for python3')
-    elif tShoot == 2 :
-        print('Error! > you need to install [requests] library for python3')
-    elif tShoot == 3 :
-        print('Error! > you need to install [bs4] library for python3')
+except Exception as e:
+    print(e)
     exit = input('Hit Enter to exit.')
     exit()
 
