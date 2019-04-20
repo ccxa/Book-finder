@@ -4,8 +4,8 @@ try:
     import requests
     import bs4
 except Exception as e:
-    print(e)
-    exit = input('Hit Enter to exit.')
+    print(e, "\nYou have to install this library.")
+    _exit = input('Hit Enter to exit.')
     exit()
 
 # checking connection
