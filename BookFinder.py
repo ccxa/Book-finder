@@ -11,10 +11,13 @@ except Exception as e:
 # checking connection
 try:
     test = requests.get('http://www.google.com')
-except:
-    print('Error! > you should connected to internet.')
-    exit = input('Make sure you are connected. Hit Enter to exit.')
+except Exception as e:
+    print(e)
+    print('You have to connected to internet.')
+    _exit = input('Make sure you are connected. Hit Enter to exit.')
     exit()
+
+
 # os detection !
 if os.system('clear') == 0:
     clearIt = 'clear'
