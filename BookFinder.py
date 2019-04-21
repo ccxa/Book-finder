@@ -1,21 +1,6 @@
-# import libraries
-try:
-    import os
-    import requests
-    import bs4
-except Exception as e:
-    print(e, "\nYou have to install this library.")
-    _exit = input('Hit Enter to exit.')
-    exit()
-
-# checking connection
-try:
-    test = requests.get('http://www.google.com')
-except Exception as e:
-    print(e)
-    print('You have to connected to internet.')
-    _exit = input('Make sure you are connected. Hit Enter to exit.')
-    exit()
+import os
+import requests
+import bs4
 
 
 # os detection !
@@ -24,12 +9,15 @@ if os.system('clear') == 0:
 else:
     clearIt = 'cls'
 
+
 def run():
     os.system(clearIt)
     # authors name
 
-    ffl = input('input your First name first letter(a-z)\n>> ').upper()          # name first letter
-    lfl = input('input your Last name first letter(a-z)\n>> ').upper()           # lastName first letter
+    # name first letter
+    ffl = input('input your First name first letter(a-z)\n>> ').upper()
+    # lastName first letter
+    lfl = input('input your Last name first letter(a-z)\n>> ').upper()
 
     base_url = 'https://en.m.wikipedia.org'
     page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)

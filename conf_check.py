@@ -1,14 +1,4 @@
-def start_check():
-    # import libraries
-    try:
-        import os
-        import requests
-        import bs4
-    except Exception as e:
-        print(e, "\nYou have to install this library.")
-        _exit = input('Hit Enter to exit.')
-        exit()
-
+def check_connection(requests):
     # checking connection
     try:
         test = requests.get('http://www.google.com')
