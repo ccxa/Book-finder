@@ -87,7 +87,8 @@ def run():
     except:
         wait = input('Error!\nThere is not books for this author in goodreads.com')
 
-def help():
+
+def help_message():
     os.system(clearIt)
 
     print('''Book finder > How to use.
@@ -119,7 +120,7 @@ while True:
     if menu == '1':
         run()
     elif menu == '2':
-        help()
+        help_message()
     elif menu == '3':
         os.system(clearIt)
         exit()
