@@ -5,12 +5,8 @@ import conf_check
 
 # checking internet connection
 conf_check.check_connection(requests)
-
 # clearing console by the os type
-if os.system('clear') == 0:
-    clearIt = 'clear'
-else:
-    clearIt = 'cls'
+clearIt = conf_check.clearIt
 
 
 def run():
