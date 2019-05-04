@@ -2,6 +2,7 @@ import os
 import requests
 import bs4
 import conf_check
+import functions
 
 # checking internet connection
 conf_check.check_connection(requests)
@@ -10,7 +11,7 @@ clearIt = conf_check.clearIt
 
 
 def run():
-    os.system(clearIt)
+    functions.clear_console()
     # authors name
 
     # name first letter
@@ -24,7 +25,7 @@ def run():
     names = soup.findAll('a')
     print('\nLoading ...\n')
 
-    os.system(clearIt)
+    functions.clear_console()
 
     writer_list = []
     counter = 1
@@ -40,7 +41,7 @@ def run():
     try :
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
         writer = str(writer_list[writer_number]).replace(' ','+')
-        os.system(clearIt)
+        functions.clear_console()
         print('Loading [IIIIII                  ] 1/4\n')
         base_url = 'https://www.goodreads.com'
         query = base_url + '/search?utf8=%E2%9C%93&q=' + writer + '&search_type=lists'
@@ -48,20 +49,20 @@ def run():
         soup = bs4.BeautifulSoup(page.content)
         link = soup.find('a','listTitle')
 
-        os.system(clearIt)
+        functions.clear_console()
         print('Loading [IIIIIIIIII              ] 2/4\n')
 
         link = str(link).split('"')
         page2 = requests.get(base_url+link[3])
 
-        os.system(clearIt)
+        functions.clear_console()
         print('Loading [IIIIIIIIIIIIIIII        ] 3/4\n')
 
         soup2 = bs4.BeautifulSoup(page2.content)
-        os.system(clearIt)
+        functions.clear_console()
         print('Loading [IIIIIIIIIIIIIIIIIIIIIIII] 4/4\n')
         books = soup2.findAll('a','bookTitle')
-        os.system(clearIt)
+        functions.clear_console()
         print('Writen by:',writer.replace('+',' '),'\n')
         counter = 1
         for book in books:
@@ -85,7 +86,7 @@ def run():
 
 
 def help_message():
-    os.system(clearIt)
+    functions.clear_console()
 
     print('''Book finder > How to use.
 ------------------------------------------------------
@@ -109,7 +110,7 @@ def help_message():
 
 
 while True:
-    os.system(clearIt)
+    functions.clear_console()
     print('Ready! > Book finder > menu')
     menu = input('[1]: Run\n[2]: How to use\n[3]: Exit\n>> ')
 
@@ -118,7 +119,7 @@ while True:
     elif menu == '2':
         help_message()
     elif menu == '3':
-        os.system(clearIt)
+        functions.clear_console()
         exit()
     else:
         wait = input('Use numbers to select, Hit enter to try again.')
