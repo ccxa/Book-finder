@@ -1,4 +1,3 @@
-import os
 import requests
 import bs4
 import conf_check

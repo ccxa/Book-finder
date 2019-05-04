@@ -1,6 +1,3 @@
-import os
-
-
 def check_connection(requests):
     # checking connection
     try:
@@ -10,4 +7,3 @@ def check_connection(requests):
         print('You have to connected to internet.')
         _exit = input('Make sure you are connected. Hit Enter to exit.')
         exit()
-        
