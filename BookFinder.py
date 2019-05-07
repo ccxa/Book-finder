@@ -5,8 +5,6 @@ import functions
 
 # checking internet connection
 conf_check.check_connection(requests)
-# clearing console by the os type
-clearIt = conf_check.clearIt
 
 
 def run():
