@@ -82,30 +82,6 @@ def run():
         wait = input('Error!\nThere is not books for this author in goodreads.com')
 
 
-def help_message():
-    functions.clear_console()
-
-    print('''Book finder > How to use.
-------------------------------------------------------
->This program will find authors who are compatible with your
- first & last names first letter.
- !!! you may receive unwanted results those are not related to authors.
- and your searched author may not be found on goodreads or wikipedia.
-
->Used websites:
- goodreads.com
- wikipedia.com
-
->Developed by: Janel > find me at:
- [Github]: github.com/ccxa
-
->Special thanks to: Jadi > help: Educational video
- [Twitter]: twitter.com/jadi
-
-    ''')
-    wait = input('Hit enter to go back.')
-
-
 while True:
     functions.clear_console()
     print('Ready! > Book finder > menu')
@@ -114,7 +90,7 @@ while True:
     if menu == '1':
         run()
     elif menu == '2':
-        help_message()
+        functions.help_message()
     elif menu == '3':
         functions.clear_console()
         exit()
