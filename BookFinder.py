@@ -4,7 +4,7 @@ import conf_check
 import functions
 
 # checking internet connection
-conf_check.check_connection(requests)
+functions.check_connection(requests)
 
 
 def run():
