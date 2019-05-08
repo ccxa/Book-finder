@@ -1,6 +1,5 @@
 import requests
 import bs4
-import conf_check
 import functions
 
 # checking internet connection
