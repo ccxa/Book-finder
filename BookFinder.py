@@ -33,7 +33,7 @@ def run():
             print('-',name.string)
             counter+=1
             writer_list.append(name.string)
-    authors book
+    #authors book
     try :
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
         writer = str(writer_list[writer_number]).replace(' ','+')
