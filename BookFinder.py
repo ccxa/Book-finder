@@ -10,10 +10,10 @@ def run():
     functions.clear_console()
     # authors name
 
-    # name first letter
-    ffl = input('input your First name first letter(a-z)\n>> ').upper()
-    # lastName first letter
-    lfl = input('input your Last name first letter(a-z)\n>> ').upper()
+    # Getting first letter of users first & last name
+    first_name = input('Enter your First name:\n>> ').upper()
+    last_name = input('Enter your last name\n>> ').upper()
+    ffl, lfl = first_name[0], last_name[0]
 
     base_url = 'https://en.m.wikipedia.org'
     page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)
@@ -33,7 +33,7 @@ def run():
             print('-',name.string)
             counter+=1
             writer_list.append(name.string)
-    # authors book
+    authors book
     try :
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
         writer = str(writer_list[writer_number]).replace(' ','+')
