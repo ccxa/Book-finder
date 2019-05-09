@@ -15,26 +15,29 @@ def run():
     last_name = input('Enter your last name\n>> ').upper()
     ffl, lfl = first_name[0], last_name[0]
 
+    # Getting authors names | Extracting data from wikipedia
     base_url = 'https://en.m.wikipedia.org'
     page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)
     soup = bs4.BeautifulSoup(page.content)
     names = soup.findAll('a')
-    print('\nLoading ...\n')
 
+    print('\nLoading ...\n')
     functions.clear_console()
 
+    # Getting authors names | Extracting names from data
     writer_list = []
     counter = 1
     for name in names:
         if name.string is None:
             continue
         elif name.string[0] == ffl and len(name.string) > 1:
-            print(str(counter).zfill(2),end='')
+            print(str(counter).zfill(2), end='')
             print('-',name.string)
-            counter+=1
+            counter += 1
             writer_list.append(name.string)
-    #authors book
-    try :
+
+    # authors book
+    try:
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
         writer = str(writer_list[writer_number]).replace(' ','+')
         functions.clear_console()
