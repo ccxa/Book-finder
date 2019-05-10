@@ -7,46 +7,21 @@ functions.check_connection(requests)
 
 
 def run():
-    functions.clear_console()
-    # authors name
 
-    # Getting first letter of users first & last name
-    first_name = input('Enter your First name:\n>> ').upper()
-    last_name = input('Enter your last name\n>> ').upper()
-    ffl, lfl = first_name[0], last_name[0]
-
-    # Getting authors names | Extracting data from wikipedia
-    base_url = 'https://en.m.wikipedia.org'
-    page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)
-    soup = bs4.BeautifulSoup(page.content)
-    names = soup.findAll('a')
-
-    print('\nLoading ...\n')
-    functions.clear_console()
-
-    # Getting authors names | Extracting names from data
-    writer_list = []
-    counter = 1
-    for name in names:
-        if name.string is None:
-            continue
-        elif name.string[0] == ffl and len(name.string) > 1:
-            print(str(counter).zfill(2), end='')
-            print('-',name.string)
-            counter += 1
-            writer_list.append(name.string)
+    # getting authors name from wikipedia
+    writer_list = functions.get_authors_name(requests, bs4)
 
     # authors book
     try:
         writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
-        writer = str(writer_list[writer_number]).replace(' ','+')
+        writer = str(writer_list[writer_number]).replace(' ', '+')
         functions.clear_console()
         print('Loading [IIIIII                  ] 1/4\n')
         base_url = 'https://www.goodreads.com'
         query = base_url + '/search?utf8=%E2%9C%93&q=' + writer + '&search_type=lists'
         page = requests.get(query)
         soup = bs4.BeautifulSoup(page.content)
-        link = soup.find('a','listTitle')
+        link = soup.find('a', 'listTitle')
 
         functions.clear_console()
         print('Loading [IIIIIIIIII              ] 2/4\n')
@@ -60,9 +35,9 @@ def run():
         soup2 = bs4.BeautifulSoup(page2.content)
         functions.clear_console()
         print('Loading [IIIIIIIIIIIIIIIIIIIIIIII] 4/4\n')
-        books = soup2.findAll('a','bookTitle')
+        books = soup2.findAll('a', 'bookTitle')
         functions.clear_console()
-        print('Writen by:',writer.replace('+',' '),'\n')
+        print('Writen by:', writer.replace('+', ' '), '\n')
         counter = 1
         for book in books:
             book = str(book).split('"')
@@ -72,11 +47,11 @@ def run():
             for w in book:
                 if w not in forbidList:
                     bookName = bookName + w
-            bookName = bookName.replace('_',' ').replace('-',' ')
+            bookName = bookName.replace('_', ' ').replace('-', ' ')
             if bookName[0] == ' ':
                 bookName = bookName[1:]
-            print(str(counter).zfill(2),'-',bookName)
-            counter+=1
+            print(str(counter).zfill(2), '-', bookName)
+            counter += 1
             if counter > 10:
                 break
         wait = input('\nHit enter to go menu.')

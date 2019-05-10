@@ -42,3 +42,36 @@ def help_message():
 
     ''')
     wait = input('Hit enter to go back.')
+
+
+def get_authors_name(requests, bs4):
+    clear_console()
+    # authors name
+
+    # Getting first letter of users first & last name
+    first_name = input('Enter your First name:\n>> ').upper()
+    last_name = input('Enter your last name\n>> ').upper()
+    ffl, lfl = first_name[0], last_name[0]
+
+    # Getting authors names | Extracting data from wikipedia
+    base_url = 'https://en.m.wikipedia.org'
+    page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)
+    soup = bs4.BeautifulSoup(page.content)
+    names = soup.findAll('a')
+
+    print('\nLoading ...\n')
+    clear_console()
+
+    # Getting authors names | Extracting names from data
+    writer_list = []
+    counter = 1
+    for name in names:
+        if name.string is None:
+            continue
+        elif name.string[0] == ffl and len(name.string) > 1:
+            print(str(counter).zfill(2), end='')
+            print('-', name.string)
+            counter += 1
+            writer_list.append(name.string)
+
+    return writer_list
