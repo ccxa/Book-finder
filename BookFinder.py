@@ -11,33 +11,42 @@ def run():
     # getting authors name from wikipedia
     writer_list = functions.get_authors_name(requests, bs4)
 
-    # authors book
+    # selecting author by user inputted number
+    writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
+    writer = str(writer_list[writer_number]).replace(' ', '+')
+
+    functions.clear_console()
+    print('Loading [IIIIII                  ] 1/4\n')
+
+    # getting authors books from goodReads
+    base_url = 'https://www.goodreads.com'
+    query = base_url + '/search?utf8=%E2%9C%93&q='\
+        + writer \
+        + '&search_type=lists'
+    page = requests.get(query)
+    soup = bs4.BeautifulSoup(page.content)
+    link = soup.find('a', 'listTitle')
+
+    functions.clear_console()
+    print('Loading [IIIIIIIIII              ] 2/4\n')
+
+    link = str(link).split('"')
+    page2 = requests.get(base_url + link[3])
+
+    functions.clear_console()
+    print('Loading [IIIIIIIIIIIIIIII        ] 3/4\n')
+
+    soup2 = bs4.BeautifulSoup(page2.content)
+
+    functions.clear_console()
+    print('Loading [IIIIIIIIIIIIIIIIIIIIIIII] 4/4\n')
+
+    books = soup2.findAll('a', 'bookTitle')
+    functions.clear_console()
+
+    # printing authors book found on goodReads
+    print('Writen by:', writer.replace('+', ' '), '\n')
     try:
-        writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
-        writer = str(writer_list[writer_number]).replace(' ', '+')
-        functions.clear_console()
-        print('Loading [IIIIII                  ] 1/4\n')
-        base_url = 'https://www.goodreads.com'
-        query = base_url + '/search?utf8=%E2%9C%93&q=' + writer + '&search_type=lists'
-        page = requests.get(query)
-        soup = bs4.BeautifulSoup(page.content)
-        link = soup.find('a', 'listTitle')
-
-        functions.clear_console()
-        print('Loading [IIIIIIIIII              ] 2/4\n')
-
-        link = str(link).split('"')
-        page2 = requests.get(base_url+link[3])
-
-        functions.clear_console()
-        print('Loading [IIIIIIIIIIIIIIII        ] 3/4\n')
-
-        soup2 = bs4.BeautifulSoup(page2.content)
-        functions.clear_console()
-        print('Loading [IIIIIIIIIIIIIIIIIIIIIIII] 4/4\n')
-        books = soup2.findAll('a', 'bookTitle')
-        functions.clear_console()
-        print('Writen by:', writer.replace('+', ' '), '\n')
         counter = 1
         for book in books:
             book = str(book).split('"')
