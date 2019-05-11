@@ -44,6 +44,15 @@ def help_message():
     wait = input('Hit enter to go back.')
 
 
+def loading_screen(_percent):
+    clear_console()
+    print('Loading ['
+          + ('IIIIII' * _percent)
+          + ('      ' * (4 - _percent)) + '] '
+          + '{}/4\n'.format(_percent)
+          )
+
+
 def get_authors_name(requests, bs4):
     clear_console()
     # authors name
@@ -75,3 +84,4 @@ def get_authors_name(requests, bs4):
             writer_list.append(name.string)
 
     return writer_list
+
