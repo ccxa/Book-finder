@@ -15,31 +15,10 @@ def run():
     writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
     writer = str(writer_list[writer_number]).replace(' ', '+')
 
-    functions.loading_screen(1)
+    books = functions.get_authors_books(requests, bs4, writer)
 
-    # getting authors books from goodReads
-    base_url = 'https://www.goodreads.com'
-    query = base_url + '/search?utf8=%E2%9C%93&q='\
-        + writer \
-        + '&search_type=lists'
-    page = requests.get(query)
-    soup = bs4.BeautifulSoup(page.content)
-    link = soup.find('a', 'listTitle')
-
-    functions.loading_screen(2)
-
-    link = str(link).split('"')
-    page2 = requests.get(base_url + link[3])
-
-    functions.loading_screen(3)
-
-    soup2 = bs4.BeautifulSoup(page2.content)
-
-    functions.loading_screen(3)
-
-    books = soup2.findAll('a', 'bookTitle')
     functions.clear_console()
-
+    
     # printing authors book found on goodReads
     print('Writen by:', writer.replace('+', ' '), '\n')
     try:

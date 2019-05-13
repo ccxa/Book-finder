@@ -85,3 +85,35 @@ def get_authors_name(requests, bs4):
 
     return writer_list
 
+
+def get_authors_books(requests, bs4, writer):
+    loading_screen(1)
+
+    # getting authors books from goodReads
+    try:
+        base_url = 'https://www.goodreads.com'
+        query = base_url + '/search?utf8=%E2%9C%93&q=' \
+            + writer \
+            + '&search_type=lists'
+        page = requests.get(query)
+        soup = bs4.BeautifulSoup(page.content)
+        link = soup.find('a', 'listTitle')
+
+        loading_screen(2)
+
+        link = str(link).split('"')
+        page2 = requests.get(base_url + link[3])
+
+        loading_screen(3)
+
+        soup2 = bs4.BeautifulSoup(page2.content)
+
+        loading_screen(3)
+
+        books = soup2.findAll('a', 'bookTitle')
+
+        return books
+
+    except Exception as e:
+        print("No books found for this author on GoodReads!")
+        return None
