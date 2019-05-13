@@ -15,33 +15,10 @@ def run():
     writer_number = int(input('\nSelect an writer by its number\n>> ')) - 1
     writer = str(writer_list[writer_number]).replace(' ', '+')
 
-    books = functions.get_authors_books(requests, bs4, writer)
+    # Extract & print books of selected author from GoodReads
+    functions.get_authors_books(requests, bs4, writer)
 
     functions.clear_console()
-    
-    # printing authors book found on goodReads
-    print('Writen by:', writer.replace('+', ' '), '\n')
-    try:
-        counter = 1
-        for book in books:
-            book = str(book).split('"')
-            book = book[3][11:]
-            forbidList = '0123456789.'
-            bookName = ''
-            for w in book:
-                if w not in forbidList:
-                    bookName = bookName + w
-            bookName = bookName.replace('_', ' ').replace('-', ' ')
-            if bookName[0] == ' ':
-                bookName = bookName[1:]
-            print(str(counter).zfill(2), '-', bookName)
-            counter += 1
-            if counter > 10:
-                break
-        wait = input('\nHit enter to go menu.')
-    except:
-        wait = input('Error!\nThere is not books for this author in goodreads.com')
-
 
 while True:
     functions.clear_console()
