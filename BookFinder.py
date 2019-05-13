@@ -8,7 +8,7 @@ functions.check_connection(requests)
 
 def run():
 
-    # getting authors name from wikipedia
+    # get users name and extracting authors name from wikipedia
     writer_list = functions.get_authors_name(requests, bs4)
 
     # selecting author by user inputted number
@@ -18,7 +18,6 @@ def run():
     # Extract & print books of selected author from GoodReads
     functions.get_authors_books(requests, bs4, writer)
 
-    functions.clear_console()
 
 while True:
     functions.clear_console()
