@@ -2,6 +2,8 @@ import os
 
 
 def check_connection(requests):
+    clear_console()
+    print("Checking connection ... ")
     # checking connection
     try:
         test = requests.get('http://www.google.com')
