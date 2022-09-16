@@ -61,11 +61,14 @@ def get_authors_name(requests, bs4):
     # Getting first letter of users first & last name
     first_name = input('Enter your First name:\n>> ').upper()
     last_name = input('Enter your last name\n>> ').upper()
-    ffl, lfl = first_name[0], last_name[0]
+
+    first_name_first_letter = first_name[0]
+    last_name_first_letter =  last_name[0]
 
     # Getting authors names | Extracting data from wikipedia
     base_url = 'https://en.m.wikipedia.org'
-    page = requests.get(base_url + '/wiki/List_of_authors_by_name:_' + lfl)
+    request_url = base_url + '/wiki/List_of_authors_by_name:_'
+    page = requests.get(request_url + last_name_first_letter)
     soup = bs4.BeautifulSoup(page.content)
     names = soup.findAll('a')
 
@@ -78,7 +81,7 @@ def get_authors_name(requests, bs4):
     for name in names:
         if name.string is None:
             continue
-        elif name.string[0] == ffl and len(name.string) > 1:
+        elif name.string[0] == first_name_first_letter and len(name.string) > 1:
             print(str(counter).zfill(2), end='')
             print('-', name.string)
             counter += 1
